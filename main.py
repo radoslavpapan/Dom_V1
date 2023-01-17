@@ -40,14 +40,14 @@ def sendUDP(dataToSend):
         sock.close()
         return "None"
 
-# if sendUDP("c?") != 'OK':
-#     UDP_IP = input('Enter IP: ')
-#     f = open("IP.txt", "w+")
-#     f.write(UDP_IP)
-#     f.close()
-#     while 1:
-#         os.system("python main.py")
-#         time.sleep(0.2)
+if sendUDP("c?") != 'OK':
+    UDP_IP = input('Enter IP: ')
+    f = open("IP.txt", "w+")
+    f.write(UDP_IP)
+    f.close()
+    while 1:
+        os.system("python main.py")
+        time.sleep(0.2)
 
 
 class MyGridLayout(GridLayout):
