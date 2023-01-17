@@ -1,0 +1,40 @@
+<MyGridLayout>
+    GridLayout:
+        cols:2
+        size: root.width, root.height
+        GridLayout:
+            cols:3
+
+            Image:
+                source: "Temp.png"
+            Label:
+                text: "Temp OUT: "
+            Label:
+                id: label_TempOUT
+            Image:
+                source: "Humm.png"
+            Label:
+                text: "Humm OUT: "
+            Label:
+                id: label_HummOUT
+            Image:
+                source: "Wind.png"
+            Label:
+                text: "Speed WIND: "
+            Label:
+                id: label_SpeedWIND
+            Image:
+                source: "HummSOIL.png"
+            Label:
+                text: "Humm SOIL: "
+            Label:
+                id: label_HummSOIL
+            Image:
+                source: "LightOUT.png"
+            Label:
+                text: "Light OUT: "
+            Label:
+                id: label_LightOUT
+        Button:
+            text: "Start"
+            on_press: root.button_press()
