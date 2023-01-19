@@ -12,6 +12,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.config import ConfigParser
+from kivy.uix.settings import SettingsWithTabbedPanel
 
 UDP_PORT = 8888
 UDP_IP = ''
@@ -42,21 +43,33 @@ def sendUDP(dataToSend):
         sock.close()
         return "None"
 
-if sendUDP("c?") != 'OK':
-    UDP_IP = input('Enter IP: ')
-    f = open("IP.txt", "w+")
-    f.write(UDP_IP)
-    f.close()
-    while 1:
-        os.system("python main.py")
-        time.sleep(0.2)
+# if sendUDP("c?") != 'OK':
+#     UDP_IP = input('Enter IP: ')
+#     f = open("IP.txt", "w+")
+#     f.write(UDP_IP)
+#     f.close()
+#     while 1:
+#         os.system("python main.py")
+#         time.sleep(0.2)
 
-green = [0, 1, 0, 1]
-red = [1, 0, 0, 1]
+green = [0, 1, 0, .4]
+red = [1, 0, 0, .4]
 blue = [0, .85, 1, 1]
 default = [1, 1, 1, 1]
 
 class MyGridLayout(TabbedPanel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        Clock.schedule_interval(self.MainFunc, 2.0 / 1.0)
+        if sendUDP('c?') == 'OK':
+            self.ids.connection_stat_picture.source = "check.png"
+            self.ids.connection_stat_text.text = "Connected"
+            self.ids.connection_stat_text.background_color = green
+        else:
+            self.ids.connection_stat_picture.source = "excl_mark.png"
+            self.ids.connection_stat_text.text = "Disconnected"
+            self.ids.connection_stat_text.background_color = red
+
     def D28_manual_button_press(self):
         if self.ids.D28_manual_button.state == 'down':
             sendUDP('D28 1!')
@@ -156,8 +169,7 @@ class MyGridLayout(TabbedPanel):
 
     def button_press(self):
         Clock.schedule_interval(self.MainFunc, 2.0 / 1.0)
-        Clock.schedule_interval(self.MainFunc2, 1.0 / 10.0)
-        self.ids.D28_manual_button.disabled = False
+
 
     def MainFunc2(self, data):
         print('skuska')

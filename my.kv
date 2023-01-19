@@ -3,16 +3,34 @@
     TabbedPanelItem:
         text: 'Home'
         GridLayout:
-            cols:4
+            cols:2
+            spacing: 30
+            padding: 5
             size: root.width, root.height
             GridLayout:
                 cols:1
-                Label:
-                    text: "Data:"
-                    font_size: 25
-                    bold: True
-                    size_hint: .25, .25
+                spacing: 30
                 GridLayout:
+                    spacing: 5
+                    cols:2
+                    size_hint: 1, .05
+                    Image:
+                        id: connection_stat_picture
+                        size_hint: .2, 1
+                    Label:
+                        id: connection_stat_text
+                        font_size: 20
+                        background_color: (0, 0, 0, 1)
+                        font_name: "Comic"
+                        bold: True
+                        canvas.before:
+                            Color:
+                                rgba: self.background_color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                GridLayout:
+                    spacing: 5
                     cols:3
                     Image:
                         source: "Temp.png"
@@ -20,10 +38,12 @@
                     Label:
                         text: "Temp OUT: "
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Label:
                         id: label_TempOUT
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Image:
                         source: "Humm.png"
@@ -31,10 +51,12 @@
                     Label:
                         text: "Humm OUT: "
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Label:
                         id: label_HummOUT
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Image:
                         source: "Wind.png"
@@ -42,10 +64,12 @@
                     Label:
                         text: "Speed WIND: "
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Label:
                         id: label_SpeedWIND
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Image:
                         source: "HummSOIL.png"
@@ -53,10 +77,12 @@
                     Label:
                         text: "Humm SOIL: "
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Label:
                         id: label_HummSOIL
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Image:
                         source: "LightOUT.png"
@@ -64,27 +90,43 @@
                     Label:
                         text: "Light OUT: "
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
                     Label:
                         id: label_LightOUT
                         font_size: 20
+                        font_name: "Comic"
                         bold: True
             GridLayout:
+                spacing: 30
                 cols: 1
+                GridLayout:
+                    cols: 2
+                    size_hint: 1, .05
+                    Label:
+                    Button:
+                        size_hint: .1, .1
+                        text: 'ConfAPI'
+                        on_release: app.open_settings()
                 Button:
                     text: 'Open Gate'
                     on_press: root.button_press()
+
     TabbedPanelItem:
         text: 'Rooms'
         Button:
             text: "Start"
             id: start_button
             on_press: root.button_press()
+
     TabbedPanelItem:
         text: 'Manual I/OT'
         GridLayout:
+            spacing: 40
+            padding: 5
             cols: 4
             GridLayout:
+                spacing: 10
                 cols: 1
                 ToggleButton:
                     text: "D28"
@@ -119,6 +161,7 @@
                     id: D35_manual_button
                     on_press: root.D35_manual_button_press()
             GridLayout:
+                spacing: 10
                 cols: 1
                 ToggleButton:
                     text: "D37"
@@ -153,6 +196,7 @@
                     id: D44_manual_button
                     on_press: root.D44_manual_button_press()
             GridLayout:
+                spacing: 10
                 cols: 2
                 Label:
                     text: "D2: "
