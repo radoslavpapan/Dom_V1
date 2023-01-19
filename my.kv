@@ -1,40 +1,200 @@
 <MyGridLayout>
-    GridLayout:
-        cols:2
-        size: root.width, root.height
+    do_default_tab: False
+    TabbedPanelItem:
+        text: 'Home'
         GridLayout:
-            cols:3
-
-            Image:
-                source: "Temp.png"
-            Label:
-                text: "Temp OUT: "
-            Label:
-                id: label_TempOUT
-            Image:
-                source: "Humm.png"
-            Label:
-                text: "Humm OUT: "
-            Label:
-                id: label_HummOUT
-            Image:
-                source: "Wind.png"
-            Label:
-                text: "Speed WIND: "
-            Label:
-                id: label_SpeedWIND
-            Image:
-                source: "HummSOIL.png"
-            Label:
-                text: "Humm SOIL: "
-            Label:
-                id: label_HummSOIL
-            Image:
-                source: "LightOUT.png"
-            Label:
-                text: "Light OUT: "
-            Label:
-                id: label_LightOUT
+            cols:4
+            size: root.width, root.height
+            GridLayout:
+                cols:1
+                Label:
+                    text: "Data:"
+                    font_size: 25
+                    bold: True
+                    size_hint: .25, .25
+                GridLayout:
+                    cols:3
+                    Image:
+                        source: "Temp.png"
+                        size_hint: .5, .5
+                    Label:
+                        text: "Temp OUT: "
+                        font_size: 20
+                        bold: True
+                    Label:
+                        id: label_TempOUT
+                        font_size: 20
+                        bold: True
+                    Image:
+                        source: "Humm.png"
+                        size_hint: .5, .5
+                    Label:
+                        text: "Humm OUT: "
+                        font_size: 20
+                        bold: True
+                    Label:
+                        id: label_HummOUT
+                        font_size: 20
+                        bold: True
+                    Image:
+                        source: "Wind.png"
+                        size_hint: .5, .5
+                    Label:
+                        text: "Speed WIND: "
+                        font_size: 20
+                        bold: True
+                    Label:
+                        id: label_SpeedWIND
+                        font_size: 20
+                        bold: True
+                    Image:
+                        source: "HummSOIL.png"
+                        size_hint: .5, .5
+                    Label:
+                        text: "Humm SOIL: "
+                        font_size: 20
+                        bold: True
+                    Label:
+                        id: label_HummSOIL
+                        font_size: 20
+                        bold: True
+                    Image:
+                        source: "LightOUT.png"
+                        size_hint: .5, .5
+                    Label:
+                        text: "Light OUT: "
+                        font_size: 20
+                        bold: True
+                    Label:
+                        id: label_LightOUT
+                        font_size: 20
+                        bold: True
+            GridLayout:
+                cols: 1
+                Button:
+                    text: 'Open Gate'
+                    on_press: root.button_press()
+    TabbedPanelItem:
+        text: 'Rooms'
         Button:
             text: "Start"
+            id: start_button
             on_press: root.button_press()
+    TabbedPanelItem:
+        text: 'Manual I/OT'
+        GridLayout:
+            cols: 4
+            GridLayout:
+                cols: 1
+                ToggleButton:
+                    text: "D28"
+                    id: D28_manual_button
+                    on_press: root.D28_manual_button_press()
+                ToggleButton:
+                    text: "D29"
+                    id: D29_manual_button
+                    on_press: root.D29_manual_button_press()
+                ToggleButton:
+                    text: "D30"
+                    id: D30_manual_button
+                    on_press: root.D30_manual_button_press()
+                ToggleButton:
+                    text: "D31"
+                    id: D31_manual_button
+                    on_press: root.D31_manual_button_press()
+                ToggleButton:
+                    text: "D32"
+                    id: D32_manual_button
+                    on_press: root.D32_manual_button_press()
+                ToggleButton:
+                    text: "D33"
+                    id: D33_manual_button
+                    on_press: root.D33_manual_button_press()
+                ToggleButton:
+                    text: "D34"
+                    id: D34_manual_button
+                    on_press: root.D34_manual_button_press()
+                ToggleButton:
+                    text: "D35"
+                    id: D35_manual_button
+                    on_press: root.D35_manual_button_press()
+            GridLayout:
+                cols: 1
+                ToggleButton:
+                    text: "D37"
+                    id: D37_manual_button
+                    on_press: root.D37_manual_button_press()
+                ToggleButton:
+                    text: "D38"
+                    id: D38_manual_button
+                    on_press: root.D38_manual_button_press()
+                ToggleButton:
+                    text: "D39"
+                    id: D39_manual_button
+                    on_press: root.D39_manual_button_press()
+                ToggleButton:
+                    text: "D40"
+                    id: D40_manual_button
+                    on_press: root.D40_manual_button_press()
+                ToggleButton:
+                    text: "41"
+                    id: D41_manual_button
+                    on_press: root.D41_manual_button_press()
+                ToggleButton:
+                    text: "D42"
+                    id: D42_manual_button
+                    on_press: root.D42_manual_button_press()
+                ToggleButton:
+                    text: "D43"
+                    id: D43_manual_button
+                    on_press: root.D43_manual_button_press()
+                ToggleButton:
+                    text: "D44"
+                    id: D44_manual_button
+                    on_press: root.D44_manual_button_press()
+            GridLayout:
+                cols: 2
+                Label:
+                    text: "D2: "
+                Label:
+                    id: label_D2
+                Label:
+                    text: "D3: "
+                Label:
+                    id: label_D3
+                Label:
+                    text: "D4: "
+                Label:
+                    id: label_D4
+                Label:
+                    text: "D5: "
+                Label:
+                    id: label_D5
+                Label:
+                    text: "D6: "
+                Label:
+                    id: label_D6
+                Label:
+                    text: "D7: "
+                Label:
+                    id: label_D7
+                Label:
+                    text: "D16: "
+                Label:
+                    id: label_D16
+                Label:
+                    text: "D17: "
+                Label:
+                    id: label_D17
+                Label:
+                    text: "D26: "
+                Label:
+                    id: label_D26
+                Label:
+                    text: "D27: "
+                Label:
+                    id: label_D27
+                Label:
+                    text: "D36: "
+                Label:
+                    id: label_D36
