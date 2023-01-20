@@ -17,9 +17,10 @@ from kivy.uix.settings import SettingsWithTabbedPanel
 UDP_PORT = 8888
 UDP_IP = ''
 
+
 try:
     f = open("IP.txt", "r")
-    UDP_IP = f.read()
+    UDP_IP = f.read().replace('\n', '')
     f.close()
     print('Loaded IP: {}'.format(UDP_IP))
 except FileNotFoundError:
@@ -43,15 +44,6 @@ def sendUDP(dataToSend):
         sock.close()
         return "None"
 
-# if sendUDP("c?") != 'OK':
-#     UDP_IP = input('Enter IP: ')
-#     f = open("IP.txt", "w+")
-#     f.write(UDP_IP)
-#     f.close()
-#     while 1:
-#         os.system("python main.py")
-#         time.sleep(0.2)
-
 green = [0, 1, 0, .4]
 red = [1, 0, 0, .4]
 blue = [0, .85, 1, 1]
@@ -60,11 +52,11 @@ default = [1, 1, 1, 1]
 class MyGridLayout(TabbedPanel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        Clock.schedule_interval(self.MainFunc, 2.0 / 1.0)
         if sendUDP('c?') == 'OK':
             self.ids.connection_stat_picture.source = "check.png"
             self.ids.connection_stat_text.text = "Connected"
             self.ids.connection_stat_text.background_color = green
+            Clock.schedule_interval(self.MainFunc, 2.0 / 1.0)
         else:
             self.ids.connection_stat_picture.source = "excl_mark.png"
             self.ids.connection_stat_text.text = "Disconnected"
