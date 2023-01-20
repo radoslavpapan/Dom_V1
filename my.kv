@@ -11,26 +11,35 @@
                 cols:1
                 spacing: 30
                 GridLayout:
-                    spacing: 5
                     cols:2
-                    size_hint: 1, .05
+                    spacing: 5
+                    size_hint: 1, .1
                     Image:
                         id: connection_stat_picture
+                        source: "excl_mark.png"
                         size_hint: .2, 1
                     Label:
-                        id: connection_stat_text
+                        id: connection_stat_label
+                        text: "Connecting..."
                         font_size: 20
-                        background_color: (0, 0, 0, 1)
                         bold: True
+                        background_color: (0, .85, 1, .5)
                         canvas.before:
                             Color:
                                 rgba: self.background_color
                             Rectangle:
                                 size: self.size
                                 pos: self.pos
+                    Label:
+                        text: "IP: "
+                        size_hint: .1, 1
+                    Label:
+                        id: UDP_IP_label
+                        size_hint: .1, 1
+
                 GridLayout:
-                    spacing: 5
                     cols:3
+                    spacing: 5
                     Image:
                         source: "Temp.png"
                         size_hint: .5, .5
@@ -39,7 +48,7 @@
                         font_size: 20
                         bold: True
                     Label:
-                        id: label_TempOUT
+                        id: TempOUT_label
                         font_size: 20
                         bold: True
                     Image:
@@ -50,7 +59,7 @@
                         font_size: 20
                         bold: True
                     Label:
-                        id: label_HummOUT
+                        id: HummOUT_label
                         font_size: 20
                         bold: True
                     Image:
@@ -61,7 +70,7 @@
                         font_size: 20
                         bold: True
                     Label:
-                        id: label_SpeedWIND
+                        id: SpeedWIND_label
                         font_size: 20
                         bold: True
                     Image:
@@ -72,7 +81,7 @@
                         font_size: 20
                         bold: True
                     Label:
-                        id: label_HummSOIL
+                        id: HummSOIL_label
                         font_size: 20
                         bold: True
                     Image:
@@ -83,23 +92,31 @@
                         font_size: 20
                         bold: True
                     Label:
-                        id: label_LightOUT
+                        id: LightOUT_label
                         font_size: 20
                         bold: True
             GridLayout:
-                spacing: 30
                 cols: 1
+                spacing: 30
+                Label:
+                    text: "Fast Set"
+                    font_size: 20
+                    bold: True
+                    size_hint: 1, .1
                 GridLayout:
                     cols: 2
-                    size_hint: 1, .05
-                    Label:
+                    Image:
+                        source: "SmallGate.png"
+                        size_hint: .5, .5
                     Button:
-                        size_hint: .1, .1
-                        text: 'ConfAPI'
-                        on_release: app.open_settings()
-                Button:
-                    text: 'Open Gate'
-                    on_press: root.button_press()
+                        text: 'Open Small Gate'
+                        on_release: root.open_small_gate()
+                    Image:
+                        source: "BigGate.png"
+                        size_hint: .5, .5
+                    Button:
+                        text: 'Open Big Gate'
+                        on_release: root.open_small_gate()
 
     TabbedPanelItem:
         text: 'Rooms'
@@ -110,83 +127,137 @@
 
     TabbedPanelItem:
         text: 'Manual I/OT'
+        id: manual_OUT_tab
+        disabled: True
         GridLayout:
-            spacing: 40
+            cols: 2
+            spacing: 50
             padding: 5
-            cols: 4
             GridLayout:
-                spacing: 10
-                cols: 1
-                ToggleButton:
-                    text: "D28"
-                    id: D28_manual_button
-                    on_press: root.D28_manual_button_press()
-                ToggleButton:
-                    text: "D29"
-                    id: D29_manual_button
-                    on_press: root.D29_manual_button_press()
-                ToggleButton:
-                    text: "D30"
-                    id: D30_manual_button
-                    on_press: root.D30_manual_button_press()
-                ToggleButton:
-                    text: "D31"
-                    id: D31_manual_button
-                    on_press: root.D31_manual_button_press()
-                ToggleButton:
-                    text: "D32"
-                    id: D32_manual_button
-                    on_press: root.D32_manual_button_press()
-                ToggleButton:
-                    text: "D33"
-                    id: D33_manual_button
-                    on_press: root.D33_manual_button_press()
-                ToggleButton:
-                    text: "D34"
-                    id: D34_manual_button
-                    on_press: root.D34_manual_button_press()
-                ToggleButton:
-                    text: "D35"
-                    id: D35_manual_button
-                    on_press: root.D35_manual_button_press()
-            GridLayout:
-                spacing: 10
-                cols: 1
-                ToggleButton:
-                    text: "D37"
-                    id: D37_manual_button
-                    on_press: root.D37_manual_button_press()
-                ToggleButton:
-                    text: "D38"
-                    id: D38_manual_button
-                    on_press: root.D38_manual_button_press()
-                ToggleButton:
-                    text: "D39"
-                    id: D39_manual_button
-                    on_press: root.D39_manual_button_press()
-                ToggleButton:
-                    text: "D40"
-                    id: D40_manual_button
-                    on_press: root.D40_manual_button_press()
-                ToggleButton:
-                    text: "41"
-                    id: D41_manual_button
-                    on_press: root.D41_manual_button_press()
-                ToggleButton:
-                    text: "D42"
-                    id: D42_manual_button
-                    on_press: root.D42_manual_button_press()
-                ToggleButton:
-                    text: "D43"
-                    id: D43_manual_button
-                    on_press: root.D43_manual_button_press()
-                ToggleButton:
-                    text: "D44"
-                    id: D44_manual_button
-                    on_press: root.D44_manual_button_press()
-            GridLayout:
-                spacing: 10
                 cols: 2
+                spacing: 30
+                GridLayout:
+                    cols: 2
+                    spacing: 10
+                    Label:
+                        text: "Nieco (D28)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D28_switch
+                        on_active: root.D28_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D29)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D29_switch
+                        on_active: root.D29_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D30)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D30_switch
+                        on_active: root.D30_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D31)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D31_switch
+                        on_active: root.D31_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D32)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D32_switch
+                        on_active: root.D32_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D33)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D33_switch
+                        on_active: root.D33_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D34)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D34_switch
+                        on_active: root.D34_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D35)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D35_switch
+                        on_active: root.D35_manual_switch(self, self.active)
+                GridLayout:
+                    cols: 2
+                    spacing: 10
+                    Label:
+                        text: "Nieco (D37)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D37_switch
+                        on_active: root.D37_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D38)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D38_switch
+                        on_active: root.D38_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D39)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D39_switch
+                        on_active: root.D39_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D40)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D40_switch
+                        on_active: root.D40_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D41)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D41_switch
+                        on_active: root.D41_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D42)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D42_switch
+                        on_active: root.D42_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D43)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D43_switch
+                        on_active: root.D43_manual_switch(self, self.active)
+                    Label:
+                        text: "Nieco (D44)"
+                        font_size: 20
+                        bold: True
+                    Switch:
+                        id: D44_switch
+                        on_active: root.D44_manual_switch(self, self.active)
+            GridLayout:
+                cols: 2
+                spacing: 10
+                size_hint: .5, 1
                 Label:
                     text: "D2: "
                 Label:
@@ -231,3 +302,59 @@
                     text: "D36: "
                 Label:
                     id: label_D36
+    TabbedPanelItem:
+        text: 'Settings'
+        GridLayout:
+            spacing: 20
+            padding: 5
+            cols: 2
+            Label:
+                text: "Smart Heating"
+                hint_text: "skuska"
+                font_size: 20
+            Switch:
+                active: False
+                on_active: root.smart_heating_switch(self, self.active)
+            Label:
+                text: "Smart Blinds"
+                font_size: 20
+            Switch:
+                active: False
+                on_active: root.smart_blinds_switch(self, self.active)
+            Label:
+                text: "Smart Irrigation"
+                font_size: 20
+            Switch:
+                active: False
+                on_active: root.smart_irrigation_switch(self, self.active)
+            ToggleButton:
+                id: login_button
+                text: "LogIn"
+                font_size: 20
+                on_press: root.LogIn()
+            TextInput:
+                hint_text: "Enter Password"
+                id: login_password
+            Button:
+                text: "Refresh IP"
+                font_size: 20
+                on_press: root.refresh_ip_press()
+                on_release: root.refresh_ip_release()
+            Label:
+                id: label_UDP_IP
+                font_size: 30
+                bold: True
+            Button:
+                text: 'ConfAPI'
+                font_size: 20
+                on_release: app.open_settings()
+            Label:
+            Button:
+                text: "Close API"
+                font_size: 20
+                on_release: root.close_api()
+            Label:
+            Button:
+                text: "Reboot System"
+                font_size: 20
+                on_release: root.reboot_system()
