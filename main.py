@@ -1,4 +1,4 @@
-import socket, time, os
+import socket, time, os, glob
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -100,22 +100,29 @@ class MyGridLayout(TabbedPanel):
 
     def shutdown_system(self):
         os.system("sudo shutdown now")
+
     def update_system(self):
-        os.system("sudo rm -f /home/pi/main.py")
-        os.system("sudo rm -f /home/pi/my.kv")
-        os.system("sudo rm -f /home/pi/getdata.py")
-        os.system("sudo rm -f /home/pi/smartblinds.py")
-        os.system("sudo rm -f /home/pi/smartheating.py")
-        os.system("sudo rm -f /home/pi/smartirrigation.py")
-        os.system("sudo rm -f /home/pi/main.py")
         os.system("sudo rm -r Dom_V1")
         os.system("sudo git clone https://github.com/radoslavpapan/Dom_V1.git")
-        os.system("sudo mv -f /home/pi/Dom_V1/main.py /home/pi")
-        os.system("sudo mv -f /home/pi/Dom_V1/my.kv /home/pi")
-        os.system("sudo mv -f /home/pi/Dom_V1/getdata.py /home/pi")
-        os.system("sudo mv -f /home/pi/Dom_V1/smartblinds.py /home/pi")
-        os.system("sudo mv -f /home/pi/Dom_V1/smartheating.py /home/pi")
-        os.system("sudo mv -f /home/pi/Dom_V1/smartirrigation.py /home/pi")
+
+        txtfiles = glob.glob("*.txt")
+        pyfiles = glob.glob("*.py")
+        pngfiles = glob.glob("*.png")
+        kvfile = glob.glob("*.kv")
+
+        for i in txtfiles:
+            os.system(f"sudo rm -f /home/pi/{i}")
+            os.system(f"sudo mv -f /home/pi/Dom_V1/{i} /home/pi")
+        for i in pyfiles:
+            os.system(f"sudo rm -f /home/pi/{i}")
+            os.system(f"sudo mv -f /home/pi/Dom_V1/{i} /home/pi")
+        for i in pngfiles:
+            os.system(f"sudo rm -f /home/pi/{i}")
+            os.system(f"sudo mv -f /home/pi/Dom_V1/{i} /home/pi")
+        for i in kvfile:
+            os.system(f"sudo rm -f /home/pi/{i}")
+            os.system(f"sudo mv -f /home/pi/Dom_V1/{i} /home/pi")
+
         os.system("sudo rm -r Dom_V1")
         print("Update complete")
 
