@@ -125,6 +125,7 @@ class MyGridLayout(TabbedPanel):
 
         os.system("sudo rm -r Dom_V1")
         print("Update complete")
+        self.ids.update_label.text = "Update complete"
 
     def refresh_ip_release(self):
         self.ids.label_UDP_IP.text = 'Wait'
