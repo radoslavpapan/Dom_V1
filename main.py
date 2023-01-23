@@ -116,6 +116,7 @@ class MyGridLayout(TabbedPanel):
         os.system("sudo mv -f /home/pi/Dom_V1/smartblinds.py /home/pi")
         os.system("sudo mv -f /home/pi/Dom_V1/smartheating.py /home/pi")
         os.system("sudo mv -f /home/pi/Dom_V1/smartirrigation.py /home/pi")
+        os.system("sudo rm -r Dom_V1")
         print("Update complete")
 
     def refresh_ip_release(self):
