@@ -17,7 +17,7 @@
                     Image:
                         id: connection_stat_picture
                         source: "excl_mark.png"
-                        size_hint: .2, 1
+                        size_hint: .3, 1
                     Label:
                         id: connection_stat_label
                         text: "Connecting..."
@@ -117,8 +117,8 @@
                         size_hint: .5, .5
                     Button:
                         text: 'Open Big Gate'
-                        on_release: root.open_small_gate()
-
+                        on_press: root.open_big_gate_press()
+                        on_release: root.open_big_gate_release()
     TabbedPanelItem:
         text: 'Rooms'
         Button:
@@ -346,11 +346,15 @@
                 font_size: 30
                 bold: True
             Button:
+                id: conf_API_button
+                disabled: True
                 text: 'ConfAPI'
                 font_size: 20
                 on_release: app.open_settings()
             Label:
             Button:
+                id: close_API_button
+                disabled: True
                 text: "Close API"
                 font_size: 20
                 on_release: root.close_api()
@@ -359,3 +363,8 @@
                 text: "Reboot System"
                 font_size: 20
                 on_release: root.reboot_system()
+            Label:
+            Button:
+                text: "Power off system"
+                font_size: 20
+                on_release: root.shutdown_system()
