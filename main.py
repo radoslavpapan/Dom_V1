@@ -100,6 +100,23 @@ class MyGridLayout(TabbedPanel):
 
     def shutdown_system(self):
         os.system("sudo shutdown now")
+    def update_system(self):
+        os.system("sudo rm -f /home/pi/main.py")
+        os.system("sudo rm -f /home/pi/my.kv")
+        os.system("sudo rm -f /home/pi/getdata.py")
+        os.system("sudo rm -f /home/pi/smartblinds.py")
+        os.system("sudo rm -f /home/pi/smartheating.py")
+        os.system("sudo rm -f /home/pi/smartirrigation.py")
+        os.system("sudo rm -f /home/pi/main.py")
+        os.system("sudo rm -r Dom_V1")
+        os.system("sudo git clone https://github.com/radoslavpapan/Dom_V1.git")
+        os.system("sudo mv -f /home/pi/Dom_V1/main.py /home/pi")
+        os.system("sudo mv -f /home/pi/Dom_V1/my.kv /home/pi")
+        os.system("sudo mv -f /home/pi/Dom_V1/getdata.py /home/pi")
+        os.system("sudo mv -f /home/pi/Dom_V1/smartblinds.py /home/pi")
+        os.system("sudo mv -f /home/pi/Dom_V1/smartheating.py /home/pi")
+        os.system("sudo mv -f /home/pi/Dom_V1/smartirrigation.py /home/pi")
+        print("Update complete")
 
     def refresh_ip_release(self):
         self.ids.label_UDP_IP.text = 'Wait'
